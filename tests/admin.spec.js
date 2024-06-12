@@ -1,21 +1,30 @@
 
-
-// Includ plawright model
 const { test, expect } = require ('@playwright/test');
 
-// Include LandingPage model
-const { LandingPage } = require ('../pages/landing_page');
+const { LandingPage } = require ('../pages/landingPage');
 
-// Create test
 test('The User is redirected to the "Landing page"', async ({page}) => {
-    
-    // Create variable for LandingPage class
+   
     const landingPage = new LandingPage(page);
 
-    // Add step "goto google Home Page"
     await landingPage.redirectToOrangehrmLiveLandingPage();
 
 })
-kbkhv
+
+test('The Admin User successfully logged in to the account', async ({ page }) => {
+
+    const landingPage = new LandingPage(page);
+    await landingPage.redirectionToLandingPage();
+
+    await landingPage.fillUsername('Admin');
+
+    await landingPage.fillPassword('admin123')
+
+    await landingPage.clickLoginButton();
+    await page.waitForTimeout(2000);
+
+    await landingPage.checkIsVisibleDashboardTopbarHeader();
+
+})
 
 
