@@ -24,11 +24,24 @@ module.exports = defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+
+    // Include the screenshot in the report when the test is failed
+    screenshot: 'only-on-failure',
+
+    // Include the video in the report when the test is failed
+    video: {
+      mode: 'retain-on-failure',
+      size: {width: 640, height: 480}
+    },
+
+    
+    
+ 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
