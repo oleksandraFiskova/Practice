@@ -13,7 +13,7 @@ constructor (page) {
     this.loginButton = page.getByRole('button', {name: 'Login'});   
     this.dashboardTopbarHeader = page.getByRole('heading', {name: 'Dashboard'})    
 }
-async redirectionToLandingPage() {
+async navigateToLandingPage() {
         await this.page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
         await this.page.waitForTimeout(2000);
         await expect(this.titleLogin).toBeVisible();
@@ -27,7 +27,7 @@ async fillPassword(passwordValue) {
 async clickLoginButton() {
         await this.loginButton.click();
     }
-async checkIsVisibleDashboardTopbarHeader() {
+async isVisibleDashboardTopbarHeader() {
         await expect(this.dashboardTopbarHeader).toBeVisible();
     }
 }
