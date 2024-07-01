@@ -1,30 +1,25 @@
+const { test, expect } = require("@playwright/test");
 
-const { test, expect } = require ('@playwright/test');
+const { LandingPage } = require("../pages/landingPage");
 
-const { LandingPage } = require ('../pages/landingPage');
+test('The User is redirected to the "Landing page"', async ({ page }) => {
+	const landingPage = new LandingPage(page);
 
-test('The User is redirected to the "Landing page"', async ({page}) => {
-   
-    const landingPage = new LandingPage(page);
+	await landingPage.redirectToOrangehrmLiveLandingPage();
+});
 
-    await landingPage.redirectToOrangehrmLiveLandingPage();
+test("The Admin User successfully logged in to the account", async ({
+	page,
+}) => {
+	const landingPage = new LandingPage(page);
+	await landingPage.redirectionToLandingPage();
 
-})
+	await landingPage.fillUsername("Admin");
 
-test('The Admin User successfully logged in to the account', async ({ page }) => {
+	await landingPage.fillPassword("admin123");
 
-    const landingPage = new LandingPage(page);
-    await landingPage.redirectionToLandingPage();
+	await landingPage.clickLoginButton();
+	await page.waitForTimeout(2000);
 
-    await landingPage.fillUsername('Admin');
-
-    await landingPage.fillPassword('admin123')
-
-    await landingPage.clickLoginButton();
-    await page.waitForTimeout(2000);
-
-    await landingPage.checkIsVisibleDashboardTopbarHeader();
-
-})
-
-
+	await landingPage.checkIsVisibleDashboardTopbarHeader();
+});
