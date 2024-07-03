@@ -11,9 +11,9 @@ constructor (page) {
     }
     this.page = page;
     this.titleLogin = page.getByRole('heading', { name: 'Login' });
-    this.userNamePlaceholder = page.getByPlaceholder('Username');    
-    this.passwordPlaceholder = page.getByPlaceholder('Password');   
-    this.loginButton = page.getByRole('button', {name: 'Login'});   
+    this.usernameField = page.locator('input[name="username"]');    
+    this.passwordField = page.locator('input[name="password"]');   
+    this.loginButton = locator('button[type="submit"]');   
     this.dashboardTopbarHeader = page.getByRole('heading', {name: 'Dashboard'});
     this.profilePicture = page.getByRole('banner').getByRole('img', { name: 'profile picture' });
     this.logoutButton = page.getByRole('menuitem', { name: 'Logout' });    
@@ -24,10 +24,10 @@ async navigateToLandingPage() {
     await expect(this.titleLogin).toBeVisible();
     }
 async fillUsername(usernameValue) {
-        await this.userNamePlaceholder.fill(usernameValue);
+        await this.usernameField.fill(usernameValue);
     }
 async fillPassword(passwordValue) {
-        await this.passwordPlaceholder.fill(passwordValue);
+        await this.passwordField.fill(passwordValue);
     }
 async clickLoginButton() {
         await this.loginButton.click();
