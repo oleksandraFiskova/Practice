@@ -11,9 +11,10 @@ const { defineConfig, devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
+  //globalSetup: "./globalSetup",
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -42,6 +43,7 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
+    storageState: "./authCodegen.json"
   },
 
   /* Configure projects for major browsers */
@@ -54,6 +56,7 @@ module.exports = defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      
     },
 
     {
